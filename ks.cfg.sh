@@ -41,10 +41,12 @@ fi
 cat > /etc/systemd/system/${UNIT_NAME}.mount <<-EOF
 [Unit]
 Description=${UNIT_NAME} directory
+
 [Mount]
 What=${MOUNT_DEVICE}
 Where=${MOUNT_DIR}
 Type=xfs
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -52,8 +54,10 @@ EOF
 cat > /etc/systemd/system/${UNIT_NAME}.automount <<-EOF
 [Unit]
 Description=${UNIT_NAME} directory
+
 [Automount]
 Where=${MOUNT_DIR}
+
 [Install]
 WantedBy=multi-user.target
 EOF
