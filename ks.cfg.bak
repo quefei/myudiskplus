@@ -7,8 +7,7 @@ harddrive --partition=sdb1 --dir=/
 text
 
 ######custom######
-#network --bootproto=static --onboot=on --ip=192.168.1.5 --netmask=255.255.255.0 --gateway=192.168.1.1 --nameserver=114.114.114.114
-network --bootproto=static --onboot=on --ip=192.168.8.8 --netmask=255.255.255.0 --gateway=192.168.8.2 --nameserver=202.103.225.68
+network --bootproto=static --onboot=on --ip=192.168.1.5 --netmask=255.255.255.0 --gateway=192.168.1.1 --nameserver=114.114.114.114
 network --hostname=quenong
 
 
@@ -49,8 +48,7 @@ logvol      /home         --fstype="xfs"         --size=51200     --name=home   
 logvol      /usr/local    --fstype="xfs"         --size=269057    --name=usr_local    --vgname=cl
 
 
-######custom######
-#reboot
+####
 poweroff
 
 
@@ -67,7 +65,6 @@ kexec-tools
 %end
 
 %post
-######custom######
 #ks.cfg.sh
 %end
 
