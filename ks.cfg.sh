@@ -4,11 +4,57 @@
 ####
 quenong_rules()
 {
-cat >> /etc/udev/rules.d/51-quenong.rules <<-EOF
-KERNEL=="sd*", ATTRS{idVendor}=="${1}", ATTRS{idProduct}=="${2}", ATTRS{serial}=="${3}", SYMLINK+="myudisk%n"
-ACTION=="add", KERNEL=="sd?1", ATTRS{idVendor}=="${1}", ATTRS{idProduct}=="${2}", ATTRS{serial}=="${3}", RUN+="mymount"
-ACTION=="remove", ENV{DEVNAME}=="/dev/sd?1", ENV{ID_VENDOR_ID}=="${1}", ENV{ID_MODEL_ID}=="${2}", ENV{ID_SERIAL_SHORT}=="${3}", RUN+="myumount"
+local UDISK_VID="$1"
+local UDISK_PID="$2"
+local UDISK_SN="$3"
 
+if [[ -z "$UDISK_VID" ]] || [[ -z "$UDISK_PID" ]] || [[ -z "$UDISK_SN" ]]; then
+        continue 1
+fi
+
+cat >> /etc/udev/rules.d/51-quenong.rules <<-EOF
+KERNEL=="sd*", ATTRS{idVendor}=="${UDISK_VID}", ATTRS{idProduct}=="${UDISK_PID}", ATTRS{serial}=="${UDISK_SN}", SYMLINK+="myudisk%n"
+ACTION=="add", KERNEL=="sd?1", ATTRS{idVendor}=="${UDISK_VID}", ATTRS{idProduct}=="${UDISK_PID}", ATTRS{serial}=="${UDISK_SN}", RUN+="mymount"
+ACTION=="remove", ENV{DEVNAME}=="/dev/sd?1", ENV{ID_VENDOR_ID}=="${UDISK_VID}", ENV{ID_MODEL_ID}=="${UDISK_PID}", ENV{ID_SERIAL_SHORT}=="${UDISK_SN}", RUN+="myumount"
+
+EOF
+}
+
+
+####
+mount_device()
+{
+local MOUNT_DIR="$1"
+local MOUNT_DEVICE="$2"
+
+MOUNT_DIR=$(echo "$MOUNT_DIR" | sed "s/^\///g" | awk -F/ '{ print $1 }')
+
+if [[ -z "$MOUNT_DIR" ]] || [[ -z "$MOUNT_DEVICE" ]]; then
+        continue 1
+fi
+
+cat > /etc/systemd/system/${MOUNT_DIR}.mount <<-EOF
+[Unit]
+Description=${MOUNT_DIR} directory
+
+[Mount]
+What=${MOUNT_DEVICE}
+Where=/${MOUNT_DIR}
+Type=xfs
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat > /etc/systemd/system/${MOUNT_DIR}.automount <<-EOF
+[Unit]
+Description=${MOUNT_DIR} directory
+
+[Automount]
+Where=/${MOUNT_DIR}
+
+[Install]
+WantedBy=multi-user.target
 EOF
 }
 
@@ -18,19 +64,15 @@ UDISK_VID="0951"
 UDISK_PID="1666"
 UDISK_SN="002618525DD4F070C8744960"
 
-MOUNT_DEVICE="/dev/el/backup"
 MOUNT_DIR="/backup"
+MOUNT_DEVICE="/dev/el/backup"
 
 ROOT_PASSWORD='quenong'
 ADMIN_PASSWORD='quenong'
 
-
-######custom######
 quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"
 
-
-####
-MOUNT_DIR=$(echo "$MOUNT_DIR" | sed "s/^\///g")
+mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"
 
 
 ####
@@ -76,34 +118,6 @@ chmod 755 /usr/lib/udev/{"mymount","myumount"}
 ####
 /usr/bin/cp -af /usr/lib/systemd/system/systemd-udevd.service /etc/systemd/system/systemd-udevd.service
 sed -i "s/^MountFlags=slave$/MountFlags=shared/g" /etc/systemd/system/systemd-udevd.service
-
-
-####
-cat > /etc/systemd/system/${MOUNT_DIR}.mount <<-EOF
-[Unit]
-Description=${MOUNT_DIR} directory
-
-[Mount]
-What=${MOUNT_DEVICE}
-Where=/${MOUNT_DIR}
-Type=xfs
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-
-####
-cat > /etc/systemd/system/${MOUNT_DIR}.automount <<-EOF
-[Unit]
-Description=${MOUNT_DIR} directory
-
-[Automount]
-Where=/${MOUNT_DIR}
-
-[Install]
-WantedBy=multi-user.target
-EOF
 
 
 ####
