@@ -91,6 +91,9 @@ if [[ "$MYUDISK_TYPE" == "$ID_FS_TYPE" ]]; then
                 
                 mkdir -p /mnt/${ID_FS_LABEL}
                 mount -t ${ID_FS_TYPE} ${DEVNAME} /mnt/${ID_FS_LABEL}
+
+                sleep 3
+                . /usr/local/bin/.myexec
                 
         fi
 fi
@@ -111,6 +114,13 @@ if [[ "$MYUDISK_LABEL1" == "$ID_FS_LABEL" ]] || [[ "$MYUDISK_LABEL2" == "$ID_FS_
         rm -rf /mnt/${ID_FS_LABEL}
         
 fi
+EOF
+
+
+####
+cat > /usr/local/bin/.myexec <<-"EOF"
+#!/bin/bash
+
 EOF
 
 
