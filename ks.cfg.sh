@@ -24,35 +24,36 @@ EOF
 ####
 mount_device()
 {
-local MOUNT_DIR="$1"
+local MOUNT_DIRECTORY="$1"
 local MOUNT_DEVICE="$2"
+local MOUNT_DIR=
+local UNIT_NAME=
 
-MOUNT_DIR=$(echo "$MOUNT_DIR" | sed "s/^\///g" | awk -F/ '{ print $1 }')
+MOUNT_DIRECTORY=$(echo "$MOUNT_DIRECTORY" | sed "s/^\///g" | sed "s/\/$//g")
 
-if [[ -z "$MOUNT_DIR" ]] || [[ -z "$MOUNT_DEVICE" ]]; then
+MOUNT_DIR="/${MOUNT_DIRECTORY}"
+UNIT_NAME=$(echo "$MOUNT_DIRECTORY" | sed "s/\//\-/g")
+
+if [[ -z "$MOUNT_DIR" ]] || [[ -z "$MOUNT_DEVICE" ]] || [[ -z "$UNIT_NAME" ]]; then
         continue 1
 fi
 
-cat > /etc/systemd/system/${MOUNT_DIR}.mount <<-EOF
+cat > /etc/systemd/system/${UNIT_NAME}.mount <<-EOF
 [Unit]
-Description=${MOUNT_DIR} directory
-
+Description=${UNIT_NAME} directory
 [Mount]
 What=${MOUNT_DEVICE}
-Where=/${MOUNT_DIR}
+Where=${MOUNT_DIR}
 Type=xfs
-
 [Install]
 WantedBy=multi-user.target
 EOF
 
-cat > /etc/systemd/system/${MOUNT_DIR}.automount <<-EOF
+cat > /etc/systemd/system/${UNIT_NAME}.automount <<-EOF
 [Unit]
-Description=${MOUNT_DIR} directory
-
+Description=${UNIT_NAME} directory
 [Automount]
-Where=/${MOUNT_DIR}
-
+Where=${MOUNT_DIR}
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -70,6 +71,8 @@ MOUNT_DEVICE="/dev/el/backup"
 ROOT_PASSWORD='quenong'
 ADMIN_PASSWORD='quenong'
 
+
+######custom######
 quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"
 
 mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"
