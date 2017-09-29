@@ -21,7 +21,7 @@
  - 设置系统用户 root 与 admin 的登录密码，`ROOT_PASSWORD='密码'`，`ADMIN_PASSWORD='密码'`
  - 设置你将要使用的U盘与硬盘的相关信息
 
---- 例如：
+例如：
 
     #
     UDISK_VID="0951"
