@@ -17,9 +17,25 @@
 
 打开U盘里的 `ks.cfg` 文件，搜索 ######custom######，然后：
 
- - 修改 IP `192.168.1.5` 及网关 `192.168.1.1`
+ - 修改 IP `192.168.1.5`，网关 `192.168.1.1`
+ - 设置系统用户 root 与 admin 的登录密码，`ROOT_PASSWORD='密码'`，`ADMIN_PASSWORD='密码'`
+ - 设置你将要使用的U盘与硬盘的相关信息
 
+--- 例如：
 
+    #
+    UDISK_VID="0951"
+    UDISK_PID="1666"
+    UDISK_SN="002618525DD4F070C8744960"
+    
+    MOUNT_DIR="/backup"
+    MOUNT_DEVICE="/dev/el/backup"
+    
+    quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"
+    
+    mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"
+    
+    123
 
 
 
