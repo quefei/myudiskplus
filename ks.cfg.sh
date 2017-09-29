@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# 复制 ks.cfg.sh 到 ks.cfg 时，应该使用编辑器，否则会有变化
+
+
 ####
 quenong_rules()
 {
