@@ -23,17 +23,27 @@
 
 例如：
 
-    #
-    UDISK_VID="0951"
-    UDISK_PID="1666"
-    UDISK_SN="002618525DD4F070C8744960"
+    # 1 - 第一个U盘的信息
     
-    MOUNT_DIR="/backup"
-    MOUNT_DEVICE="/dev/el/backup"
+    UDISK_VID="0951"                                        # VID/供应商ID：代表 金士顿
+    UDISK_PID="1666"                                        # PID/产品ID：  代表 DataTraveler 100 G3
+    UDISK_SN="102618525DD4F070C8744960"                     # SN/序列号：   U盘不同 序列号不同
     
-    quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"
     
-    mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"
+    # 2 - 第一块硬盘的信息
+    
+    MOUNT_DIR="/backup"                                     #
+    MOUNT_DEVICE="/dev/el/backup"                           #
+    
+    
+    # 3 - 增加多个U盘
+    
+    quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"     #
+    
+    
+    # 4 - 增加多块硬盘
+    
+    mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"               #
     
     123
 
