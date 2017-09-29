@@ -128,6 +128,7 @@ EOF
 cat > /usr/local/bin/.myexec <<-"EOF"
 #!/bin/bash
 
+######custom######
 EOF
 
 
