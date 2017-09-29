@@ -21,7 +21,7 @@
  - 设置系统用户 root 与 admin 的登录密码，`ROOT_PASSWORD='密码'`，`ADMIN_PASSWORD='密码'`
  - 设置你将要使用的U盘与硬盘的相关信息
 
-例如：
+例如：（[金士顿U盘][6]）
 
     # 1 - 第一个U盘的信息
     
@@ -31,21 +31,40 @@
     
     
     # 2 - 第一块硬盘的信息
+    # 代表 将硬盘的逻辑卷 /dev/el/backup 挂载到 /backup 目录
     
-    MOUNT_DIR="/backup"                                     #
-    MOUNT_DEVICE="/dev/el/backup"                           #
+    MOUNT_DIR="/backup"                                     # 挂载的目录
+    MOUNT_DEVICE="/dev/el/backup"                           # 挂载的硬盘分区
     
     
     # 3 - 增加多个U盘
     
     quenong_rules "$UDISK_VID" "$UDISK_PID" "$UDISK_SN"     #
     
+    quenong_rules "0951" "1666" "202618525DD4F070C8744960"  # 增加第二个U盘
+    
     
     # 4 - 增加多块硬盘
     
     mount_device "$MOUNT_DIR" "$MOUNT_DEVICE"               #
     
-    123
+    mount_device "/usr/local/data" "/dev/sdc1"              # 增加第二块硬盘    挂载第一个分区
+    
+    # 之后，你将给系统安装三块硬盘，一块用来安装系统，又额外增加了二块
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,3 +87,4 @@
   [3]: https://github.com/quefei/myudisk#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
   [4]: https://github.com/quefei/myudiskplus#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
   [5]: https://gitee.com/quefei/myudiskplus/repository/archive/master
+  [6]: http://www.kingston.com/cn/usb/personal_business/dt100g3
