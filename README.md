@@ -9,6 +9,12 @@
 
 ## 自动安装 CentOS-7.4-x86_64
 
+**1.1 下载 Myudisk+：**
+
+下载 [Myudisk+][5]，将 `QUENONG` 目录下的所有文件拷贝到U盘的 `根目录` 并替换。
+
+
+
 
 
 
@@ -30,3 +36,4 @@
   [2]: https://github.com/quefei/myudisk#%E5%88%B6%E4%BD%9C-myudisk
   [3]: https://github.com/quefei/myudisk#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
   [4]: https://github.com/quefei/myudiskplus#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
+  [5]: https://gitee.com/quefei/myudiskplus/repository/archive/master
