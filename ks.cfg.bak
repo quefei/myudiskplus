@@ -65,7 +65,7 @@ kexec-tools
 %end
 
 %post
-#ks.cfg.sh
+######custom######
 %end
 
 
