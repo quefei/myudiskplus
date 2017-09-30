@@ -101,7 +101,17 @@
     systemctl enable  backup.automount
     systemctl disable backup.automount
 
-1.5
+**1.5 挂载U盘：**
+
+如果U盘的文件系统为 `vfat`，可以开启自动挂载U盘的功能：
+
+ - U盘的卷标为 `QUENONG` 或者 `其他名称`：关闭自动挂载U盘的功能
+ - U盘的卷标为 `QUENONG2017`：2017年，全年开启自动挂载U盘的功能
+ - U盘的卷标为 `QUENONG1001`：10月01日，当天开启自动挂载U盘的功能（注意：`系统时间是否正确`）
+
+拔出U盘后，当 `/mnt` 下的挂载目录空闲时，会自动卸载U盘，并删除挂载目录。
+
+1.6
 
 
 
