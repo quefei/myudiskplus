@@ -68,12 +68,40 @@
  - 安装完成后自动关机
  - 增加硬盘后开机
 
-**1.4 （待续......）**
+**1.4 挂载硬盘：**
 
+ - 如果硬盘已经分区，并且格式化为 `xfs`
+ - 就可以直接挂载硬盘
 
+例如：
 
+    systemctl start   backup.mount
+    systemctl stop    backup.mount
+    
+    systemctl restart backup.mount
+    systemctl status  backup.mount
+    
+    systemctl enable  backup.mount
+    systemctl disable backup.mount
 
+ - 也可以自动挂载硬盘
 
+例如：
+
+    systemctl stop    backup.mount
+    systemctl disable backup.mount
+    
+    
+    systemctl start   backup.automount
+    systemctl stop    backup.automount
+    
+    systemctl restart backup.automount
+    systemctl status  backup.automount
+    
+    systemctl enable  backup.automount
+    systemctl disable backup.automount
+
+1.5
 
 
 
