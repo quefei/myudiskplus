@@ -6,14 +6,14 @@
  - [制作 Myudisk（参见 Myudisk）][2]
  - [手动安装 CentOS-7.4-x86_64（参见 Myudisk）][3]
  - [自动安装 CentOS-7.4-x86_64][4]
- - 自动执行用户脚本
- - [相关文档][5]
+ - [自动执行用户脚本][5]
+ - [相关文档][6]
 
 ## 自动安装 CentOS-7.4-x86_64
 
 **1.1 下载 Myudisk+：**
 
-下载 [Myudisk+][6]，将 `QUENONG` 目录下的所有文件拷贝到U盘的 `根目录` 并替换。
+下载 [Myudisk+][7]，将 `QUENONG` 目录下的所有文件拷贝到U盘的 `根目录` 并替换。
 
 **1.2 配置 ks.cfg：**
 
@@ -23,7 +23,7 @@
  - 设置系统用户 root 与 admin 的登录密码，`ROOT_PASSWORD='密码'`，`ADMIN_PASSWORD='密码'`
  - 设置你将要使用的U盘与硬盘的相关信息
 
-例如：（[金士顿U盘][7]）
+例如：（[金士顿U盘][8]）
 
     # 1 - 第一个U盘的信息
     
@@ -120,6 +120,7 @@
   [2]: https://github.com/quefei/myudisk#%E5%88%B6%E4%BD%9C-myudisk
   [3]: https://github.com/quefei/myudisk#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
   [4]: https://github.com/quefei/myudiskplus#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85-centos-74-x86_64
-  [5]: https://github.com/quefei/docs
-  [6]: https://gitee.com/quefei/myudiskplus/repository/archive/master
-  [7]: http://www.kingston.com/cn/usb/personal_business/dt100g3
+  [5]: https://github.com/quefei/myudiskplus#%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E7%94%A8%E6%88%B7%E8%84%9A%E6%9C%AC
+  [6]: https://github.com/quefei/docs
+  [7]: https://gitee.com/quefei/myudiskplus/repository/archive/master
+  [8]: http://www.kingston.com/cn/usb/personal_business/dt100g3
