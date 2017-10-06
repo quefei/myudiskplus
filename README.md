@@ -115,6 +115,35 @@
 
 ## 自动执行用户脚本
 
+**2.1 配置 my.conf：**
+
+如果已经开启了自动挂载U盘的功能，就可以通过配置 `QUENONG/my/conf/my.conf` 文件，开启自动执行用户脚本的功能（`QUENONG` 代指 `U盘根目录`）。
+
+ - [详情请见 my.conf 文件][9]
+
+2.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   [1]: https://github.com/quefei/myudisk#%E9%87%8D%E8%A6%81%E8%AF%B4%E6%98%8E
   [2]: https://github.com/quefei/myudisk#%E5%88%B6%E4%BD%9C-myudisk
@@ -124,3 +153,4 @@
   [6]: https://github.com/quefei/docs
   [7]: https://gitee.com/quefei/myudiskplus/repository/archive/master
   [8]: http://www.kingston.com/cn/usb/personal_business/dt100g3
+  [9]: https://github.com/quefei/myudiskplus/blob/master/QUENONG/my/conf/my.conf
